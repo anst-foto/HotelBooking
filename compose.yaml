@@ -1,0 +1,39 @@
+﻿services:
+  postgres:
+    container_name: postgres
+    image: postgres:17
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "1234"
+      POSTGRES_DB: "hotel_db"
+      PGDATA: "/var/lib/postgresql/data"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./storage/postgres:/var/lib/postgresql/data
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 4G
+  
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4:7.2
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "starinin_andrey@ya.ru"
+      PGADMIN_DEFAULT_PASSWORD: "1234"
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+    volumes:
+      - ./storage/pgadmin:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 1G

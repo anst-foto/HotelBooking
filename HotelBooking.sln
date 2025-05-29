@@ -2,6 +2,17 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelBooking.WebApi", "HotelBooking.WebApi\HotelBooking.WebApi.csproj", "{CC78F689-37E5-40D4-AC49-316488163DFB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "outhers", "outhers", "{ABFA4C89-A631-42D8-8D8C-EB2BEA6940E1}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		compose.yaml = compose.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SQL", "SQL", "{AE78EE89-6ABB-4E0C-BC17-D75D9634CA7C}"
+	ProjectSection(SolutionItems) = preProject
+		SQL\create_db.sql = SQL\create_db.sql
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
