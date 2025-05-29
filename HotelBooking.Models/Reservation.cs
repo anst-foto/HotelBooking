@@ -2,7 +2,7 @@
 
 namespace HotelBooking.Models;
 
-public class Reservation
+public class Reservation : IModel
 {
     public int Id { get; set; }
     public Room Room { get; set; }

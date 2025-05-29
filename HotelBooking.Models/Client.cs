@@ -2,7 +2,7 @@
 
 namespace HotelBooking.Models;
 
-public class Client
+public class Client : IModel
 {
     public int Id { get; set; }
     public string LastName { get; set; }
