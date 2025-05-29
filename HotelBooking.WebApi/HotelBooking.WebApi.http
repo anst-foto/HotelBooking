@@ -1,0 +1,6 @@
+@HotelBooking = http://localhost:5117
+
+GET {{HotelBooking}}/
+Accept: application/json
+
+###
