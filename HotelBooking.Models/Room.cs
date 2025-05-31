@@ -1,8 +1,8 @@
 ﻿namespace HotelBooking.Models;
 
-public class Room : IModel
+public record Room : IModel
 {
-    public int Id { get; set; }
-    public string Number { get; set; }
-    public bool IsDeleted { get; set; }
+    public uint? Id { get; init; }
+    public required string Number { get; init; }
+    public bool IsDeleted { get; init; } = false;
 }
