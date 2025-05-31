@@ -120,7 +120,7 @@ CREATE TABLE table_clients (
 
 CREATE TABLE table_rooms (
     id SERIAL PRIMARY KEY,
-    room_number TEXT NOT NULL,
+    number TEXT NOT NULL,
     is_deleted BOOLEAN NOT NULL DEFAULT FALSE
 );
 
@@ -191,7 +191,7 @@ CREATE VIEW view_reservations AS
            table_clients.email AS email,
            table_clients.date_of_birth AS date_of_birth,
            table_rooms.id AS room_id,
-           table_rooms.room_number AS room_number
+           table_rooms.number AS room_number
     FROM table_reservations
         JOIN table_clients 
             ON table_reservations.client_id = table_clients.id
@@ -202,7 +202,7 @@ CREATE VIEW view_reservations AS
 -- <TEST_DATA>
 INSERT INTO table_clients(last_name, first_name, patronymic, phone, email, date_of_birth) 
 VALUES ('Иванов', 'Иван', 'Иванович', '+79111111111', 'ivanov@mail.ru', '1990-01-01');
-INSERT INTO table_rooms(room_number) 
+INSERT INTO table_rooms(number) 
 VALUES ('101'),
        ('102');
 INSERT INTO table_reservations(client_id, room_id, arrival_date, departure_date)
