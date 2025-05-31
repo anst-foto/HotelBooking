@@ -1,6 +1,6 @@
-@HotelBooking = http://localhost:5117
+@HotelBooking = http://localhost:5117/api/v1/
 
-GET {{HotelBooking}}/
+GET {{HotelBooking}}/rooms/1
 Accept: application/json
 
 ###

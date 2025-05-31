@@ -6,4 +6,8 @@
         <ImplicitUsings>disable</ImplicitUsings>
     </PropertyGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\HotelBooking.DAL\HotelBooking.DAL.csproj" />
+    </ItemGroup>
+
 </Project>

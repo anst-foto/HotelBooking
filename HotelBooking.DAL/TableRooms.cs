@@ -24,7 +24,7 @@ public class TableRooms : ICrudAsync<Room>
         throw new System.NotImplementedException();
     }
 
-    public async Task<Room> GetByIdAsync(int id)
+    public async Task<Room> GetByIdAsync(uint id)
     {
         var sql = "SELECT * FROM table_rooms WHERE id = @id";
         return await _connection.QuerySingleAsync<Room>(sql, new { id });
