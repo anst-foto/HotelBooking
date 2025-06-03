@@ -10,17 +10,22 @@ app.UseHttpsRedirection();
 
 app.MapGet("/", () => Results.Ok("Hello World"));
 
-app.MapGet("/api/v1/rooms/{id:int}", async (uint id) =>
+const string apiPrefix = "/api/v1";
+
+var apiRooms = app.MapGroup($"{apiPrefix}/rooms");
+
+apiRooms.MapGet("/{id:int}", async (int id) =>
 {
     var factory = new TableRoomsFactory();
-    #if DEBUG
-    var tableRooms = factory.Create("appsetings.json", "Test");
-    #elif RELEASE
-    var tableRooms = factory.Create("appsetings.json", "Production");
-    #endif
-
+   
     try
     {
+#if DEBUG
+        var tableRooms = factory.Create("appsettings.json", "Test");
+#elif RELEASE
+        var tableRooms = factory.Create("appsetings.json", "Production");
+#endif
+        
         var room = await tableRooms.GetByIdAsync(id);
         return Results.Ok(room);
     }
@@ -30,4 +35,4 @@ app.MapGet("/api/v1/rooms/{id:int}", async (uint id) =>
     }
 });
 
-app.Run();
+await app.RunAsync();
