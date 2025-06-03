@@ -4,3 +4,8 @@ GET {{HotelBooking}}/rooms/1
 Accept: application/json
 
 ###
+
+GET {{HotelBooking}}/rooms/
+Accept: application/json
+
+###

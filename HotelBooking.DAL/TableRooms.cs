@@ -34,9 +34,15 @@ public class TableRooms : ICrudAsync<Room>
     /// Возвращает все записи из таблицы
     /// </summary>
     /// <returns>Асинхронный итератор все записей комнат</returns>
-    public IAsyncEnumerable<Room> GetAllAsync()
+    public async IAsyncEnumerable<Room> GetAllAsync()
     {
-        throw new System.NotImplementedException();
+        var sql = "SELECT * FROM table_rooms";
+        var rooms = await _connection.QueryAsync<Room>(sql);
+        foreach (var room in rooms)
+        {
+            await Task.Delay(2000);
+            yield return room;
+        }
     }
 
     /// <summary>
