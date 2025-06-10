@@ -104,8 +104,8 @@ END;
 $$;
 -- </LOG>
     
---CREATE SCHEMA test;
---SET search_path='test';
+CREATE SCHEMA test;
+SET search_path='test';
 
 -- <TABLES>
 CREATE TABLE table_clients (

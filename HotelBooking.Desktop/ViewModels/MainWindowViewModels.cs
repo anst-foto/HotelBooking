@@ -23,18 +23,16 @@ public class MainWindowViewModels : ReactiveObject
     [Reactive] public bool? IsDeleted { get; set; }
 
     public ReactiveCommand<Unit, Unit> LoadCommand { get; }
-    public ReactiveCommand<Unit, Unit> GetByIdCommand { get; }
 
     public MainWindowViewModels()
     {
         _httpClient = App.HttpClient;
         
         LoadCommand = ReactiveCommand.CreateFromTask(Load);
-        GetByIdCommand = ReactiveCommand.CreateFromTask(GetById);
 
         this.WhenAnyValue(vm => vm.SelectedRoom)
             .WhereNotNull()
-            .InvokeCommand(GetByIdCommand);
+            .SubscribeAsync(GetById);
     }
 
     private async Task Load()
@@ -56,11 +54,11 @@ public class MainWindowViewModels : ReactiveObject
         }
     }
 
-    private async Task GetById()
+    private async Task GetById(Room selectedRoom)
     {
         try
         {
-            var id = SelectedRoom?.Id;
+            var id = selectedRoom?.Id;
             var room = await _httpClient.GetFromJsonAsync<Room>($"http://localhost:5117/api/v1/rooms/{id}");
         
             Id = room?.Id;
@@ -71,6 +69,5 @@ public class MainWindowViewModels : ReactiveObject
         {
             MessageBox.Show(e.Message, "Error");
         }
-        
     }
 }
